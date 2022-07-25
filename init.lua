@@ -1,6 +1,8 @@
 require('plugins')
 require('lsp')
 require('treesitter')
+require('_telescope')
+require('keymaps')
 
 -- formatoptions-=ro not working
         

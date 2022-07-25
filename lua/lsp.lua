@@ -40,7 +40,29 @@ local lsp_flags = {
     debounce_text_changes = 150,
 }
 
+local util = require('lspconfig/util')
+
 require('lspconfig')['tsserver'].setup{
     on_attach = on_attach,
     lsp_flags = lsp_flags,
+}
+require('lspconfig')['elixirls'].setup{
+    on_attach = on_attach,
+    lsp_flags = lsp_flags,
+    cmd = { '/Users/jeff/Personal/repos/elixir-ls/language_server.sh' }
+}
+require('lspconfig')['gopls'].setup {
+    on_attach = on_attach,
+    lsp_flags = lsp_flags,
+    cmd = {"gopls", "serve"},
+    filetypes = {"go", "gomod"},
+    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      },
+    },
 }
