@@ -12,6 +12,7 @@ vim.api.nvim_exec([[
     set expandtab     " these two settings change tabs to 4 spaces 
     set shiftwidth=4  " these two settings change tabs to 4 spaces 
     colorscheme gruvbox-baby
+    set mouse=a
 ]], true)
 
 -- Able to diagnose in buffer with :LspLog
