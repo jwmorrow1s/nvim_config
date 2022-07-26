@@ -11,7 +11,7 @@ do_vim([[
     let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'javascript': ['eslint', 'prettier'],
-    \ 'typescript': ['tslint', 'eslint', 'tsserver', 'prettier'],
+    \ 'typescript': ['tslint', 'eslint', 'prettier'],
     \ 'typescriptreact': ['tslint', 'eslint', 'prettier'],
     \ 'go': ['gofmt'],
     \}
