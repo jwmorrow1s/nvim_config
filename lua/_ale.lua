@@ -6,12 +6,14 @@ do_vim([[
     \ 'javascript': ['eslint', 'prettier'],
     \ 'typescript': ['tslint', 'eslint', 'tsserver', 'prettier'],
     \ 'typescriptreact': ['tslint', 'eslint', 'prettier'],
+    \ 'go': ['gopls', 'gofmt'],
     \}
     let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'javascript': ['eslint', 'prettier'],
     \ 'typescript': ['tslint', 'eslint', 'tsserver', 'prettier'],
     \ 'typescriptreact': ['tslint', 'eslint', 'prettier'],
+    \ 'go': ['gofmt'],
     \}
     let g:ale_fix_on_save = 1
 ]], true)
