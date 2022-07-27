@@ -8,23 +8,18 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 local function setup_completion(use)
-  use 'hrsh7th/nvim-cmp'
-  -- auto-completes with words from the current buffer
-  use 'hrsh7th/cmp-buffer'
-  -- auto-completes with writing files
-  use 'hrsh7th/cmp-path'
-  -- auto-completes lua with nvim/vim api functions
-  use 'hrsh7th/cmp-nvim-lua'
-  -- auto-completes with info from lsp
   use 'hrsh7th/cmp-nvim-lsp'
-  -- luasnip for snippet implementation
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
+  use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
 end
 
 return require('packer').startup(function(use)
     -- packer itself
     use 'wbthomason/packer.nvim'
-    use 'onsails/lspkind.nvim'
 
     -- My plugins
     -- lsp

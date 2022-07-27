@@ -3,8 +3,8 @@ require('lsp')
 require('treesitter')
 require('_telescope')
 require('keymaps')
-require('completions')
 require('_ale')
+require('completions')
 
 local do_vim = vim.api.nvim_exec
 
