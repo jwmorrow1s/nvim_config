@@ -63,12 +63,12 @@ cmp.setup {
   --   keyword_length
   --   priority
   --   max_item_count
-  sources = {
+  sources = cmp.config.sources({
     { name = 'nvim_lua' },
     { name = 'path' },
     { name = 'luasnip' },
     { name = 'buffer', keyword_length = 5 },
-  },
+  }),
 
   snippet = {
     expand = function(args)
@@ -93,4 +93,19 @@ cmp.setup {
     native_menu = false,
     ghost_text = true,
   }
+}
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+require('lspconfig')['tsserver'].setup{
+  capabilities = capabilities
+}
+require('lspconfig')['elixirls'].setup{
+  capabilities = capabilities
+}
+require('lspconfig')['gopls'].setup {
+  capabilities = capabilities
+}
+require('lspconfig')['sumneko_lua'].setup {
+  capabilities = capabilities
 }
