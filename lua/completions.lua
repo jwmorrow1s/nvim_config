@@ -9,7 +9,7 @@ cmp.setup {
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-u>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<c-y>"] = cmp.mapping(
+    ["<CR>"] = cmp.mapping(
       cmp.mapping.confirm{
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
@@ -95,17 +95,17 @@ cmp.setup {
   }
 }
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require('lspconfig')['tsserver'].setup{
-  capabilities = capabilities
-}
-require('lspconfig')['elixirls'].setup{
-  capabilities = capabilities
-}
-require('lspconfig')['gopls'].setup {
-  capabilities = capabilities
-}
-require('lspconfig')['sumneko_lua'].setup {
-  capabilities = capabilities
-}
+--local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+---- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+--require('lspconfig')['tsserver'].setup{
+--  capabilities = capabilities
+--}
+--require('lspconfig')['elixirls'].setup{
+--  capabilities = capabilities
+--}
+--require('lspconfig')['gopls'].setup {
+--  capabilities = capabilities
+--}
+--require('lspconfig')['sumneko_lua'].setup {
+--  capabilities = capabilities
+--}
