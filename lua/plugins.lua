@@ -34,6 +34,10 @@ return require('packer').startup(function(use)
     use 'dense-analysis/ale'
     --theme
     use 'luisiacc/gruvbox-baby'
+    --git blame integration
+    use 'APZelos/blamer.nvim'
+    --git diff
+    use 'airblade/vim-gitgutter'
     --completion
     setup_completion(use)
     -- /My plugins

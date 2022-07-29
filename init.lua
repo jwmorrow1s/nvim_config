@@ -5,6 +5,7 @@ require('_telescope')
 require('keymaps')
 require('_ale')
 require('completions')
+require('blame')
 
 local do_vim = vim.api.nvim_exec
 
