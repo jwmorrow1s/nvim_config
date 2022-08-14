@@ -6,14 +6,15 @@ require('keymaps')
 require('_ale')
 require('completions')
 require('blame')
+require('_debug')
 
-local do_vim = vim.api.nvim_exec
+vim.o.number = true
+vim.o.expandtab = true
+vim.o.shiftwidth = 2
+vim.opt_local.cursorline = true
+vim.o.mouse = "a"
 
-do_vim([[
-    set number "set line numbers
-    autocmd FileType * setlocal formatoptions-=r formatoptions-=o "disable newline comments. Very annoying
-    set expandtab     " these two settings change tabs to 2 spaces
-    set shiftwidth=2  " these two settings change tabs to 2 spaces
+vim.api.nvim_exec([[
     colorscheme gruvbox-baby
     " fix highlighting
     if (&background == 'dark')
@@ -21,7 +22,6 @@ do_vim([[
     else
       hi Visual cterm=NONE ctermfg=NONE ctermbg=223 guibg=#ffd7af
     endif
-    set mouse=a
 ]], true)
 
 -- Able to diagnose in buffer with :LspLog

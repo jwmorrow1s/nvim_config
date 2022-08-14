@@ -24,6 +24,8 @@ return require('packer').startup(function(use)
     -- My plugins
     -- lsp
     use 'neovim/nvim-lspconfig'
+    -- nvim api completion
+    use 'nvim-lua/completion-nvim'
     -- better syntax highlighting
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     -- elixir lsp
@@ -38,6 +40,8 @@ return require('packer').startup(function(use)
     use 'APZelos/blamer.nvim'
     --git diff
     use 'airblade/vim-gitgutter'
+    -- debugger
+    use 'puremourning/vimspector'
     --completion
     setup_completion(use)
     -- /My plugins

@@ -3,12 +3,15 @@ local keymap = vim.keymap.set
 local default_opts = { noremap = true, silent = true }
 local telescope = require('telescope.builtin')
 
-keymap('n', '<space>ff', function() 
+-- telescope
+keymap('n', '<space>ff', function()
     telescope.find_files()
 end)
-keymap('n', '<space>fs', function() 
+keymap('n', '<space>fs', function()
     telescope.live_grep()
 end)
+
+-- debug
 
 --function dump(o)
 --   if type(o) == 'table' then
@@ -22,4 +25,3 @@ end)
 --      return tostring(o)
 --   end
 --end
-

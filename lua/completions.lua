@@ -1,8 +1,4 @@
-local do_vim = vim.api.nvim_exec
-
-do_vim([[
-  set completeopt=menu,menuone,noselect
-]], true)
+vim.o.completeopt = "menu,menuone,noselect"
 
 local cmp = require('cmp')
 
