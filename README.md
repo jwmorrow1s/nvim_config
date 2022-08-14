@@ -26,8 +26,21 @@
       export PATH="$path_to_lua_language_server/bin/:$PATH"
     ```
 
+## LSP
+- You'll need to configure gopls (download gopls with go install, set up gopath, etc),
+- You'll need to download typescript-language-server
+- You'll need to download the elixir language server
+- Lua Lsp config explained above
+
+## Linting
+- Supports linting of typescript/javascript, elixir, and golang. I didn't set up Lua linting/fixing
+
+## Filesearch/Grep-ing
+- I use telescope
+
 ## Debugger
-### GOLANG
+### You'll need to run :VimspectorInstall to install the gadgets for your os
+#### GOLANG
 - for mac/linux(as $OS) put in "$HOME/.config/vimspector-config/confgurations/$OS/go/golang.json"
 ```json
 {
@@ -44,5 +57,4 @@
     }
   }
 }
-
   ```
