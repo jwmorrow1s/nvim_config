@@ -25,3 +25,24 @@
     ```bash
       export PATH="$path_to_lua_language_server/bin/:$PATH"
     ```
+
+## Debugger
+### GOLANG
+- for mac/linux(as $OS) put in "$HOME/.config/vimspector-config/confgurations/$OS/go/golang.json"
+```json
+{
+  "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json",
+  "configurations": {
+    "Run": {
+      "adapter": "delve",
+      "configuration": {
+        "request": "launch",
+        "program": "${fileDirname}",
+        "mode": "debug",
+        "dlvToolPath": "$HOME/.config/vimspector-config/gadgets/linux/delve/bin/dlv"
+      }
+    }
+  }
+}
+
+  ```
