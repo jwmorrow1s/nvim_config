@@ -42,6 +42,11 @@
 ### You'll need to run :VimspectorInstall to install the gadgets for your os
 #### GOLANG
 - for mac/linux(as $OS) put in "$HOME/.config/vimspector-config/confgurations/$OS/go/golang.json"
+  - NOTE: I was getting barked at(only on Mac/Catalina) because nvim wasn't built with py3, so:
+```console
+    you@user:~$ sudo pip3 --upgrade pip
+    you@user:~$ sudo pip3 install pynvim
+```
 ```json
 {
   "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json",
