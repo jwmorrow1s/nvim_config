@@ -44,6 +44,17 @@ return require('packer').startup(function(use)
     use 'puremourning/vimspector'
     --completion
     setup_completion(use)
+    -- diagnostic for lsp
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+      require("trouble").setup {
+        -- TODO
+        -- needs keybinds: see https://github.com/folke/trouble.nvim
+      }
+    end
+    }
     -- /My plugins
 
     -- Automatically set up your configuration after cloning packer.vim (if missing)
