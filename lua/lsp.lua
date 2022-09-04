@@ -1,26 +1,18 @@
--- Mappings
--- See: `:help vim.diagnostic.*` for documentation on any of the below functions
+local vim_utils = require('_vim_utils')
+local debug = require('_debug')
+
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(_, bufnr)
-    -- enable completion trigger by <c-x> <c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings
-    -- See :help vim.lsp.* for documentation on any of the below functions
+local function set_common_lsp_keybindings()
     local bufopts = { noremap=true, silent=true, buffer=bufnr }
     vim.keymap.set('n', 'gD', function()
-      print('Go To Declaration')
       vim.lsp.buf.declaration()
     end, bufopts)
     vim.keymap.set('n', 'gd', function()
-      print('Go To Definition')
       vim.lsp.buf.definition()
     end, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -41,6 +33,14 @@ local on_attach = function(_, bufnr)
     end, bufopts)
 end
 
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(_, bufnr)
+    -- enable completion trigger by <c-x> <c-o>
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    set_common_lsp_keybindings()
+end
+
 local lsp_flags = {
     -- this is the default for neovim > 0.7
     debounce_text_changes = 150,
@@ -55,6 +55,7 @@ local function setup_lua_lsp()
   local runtime_path = vim.split(package.path, ';')
   table.insert(runtime_path, "lua/?.lua")
   table.insert(runtime_path, "lua/?/init.lua")
+  set_common_lsp_keybindings()
 
   require('lspconfig')['sumneko_lua'].setup {
       cmd = {sumneko_binary_path, "-E", sumneko_root_path .. "/lua-language-server/bin/main.lua"};
@@ -83,6 +84,64 @@ local function setup_lua_lsp()
   }
 end
 
+local function setup_scala_lsp()
+  local metals_config = require("metals").bare_config()
+  metals_config.init_options.statusBarProvider = "on"
+
+  vim_utils.lang_autocmd("nvim-metals", {"scala", "sbt", "java"}, function()
+      require("metals").initialize_or_attach(metals_config)
+
+      local dap = require('dap')
+      dap.configurations.scala = {
+        {
+          type = "scala",
+          request = "launch",
+          name = "RunOrTest",
+          metals = {
+            runType = "runOrTestFile",
+          },
+        },
+        {
+          type = "scala",
+          request = "launch",
+          name = "Test Target",
+          metals = {
+            runType = "testTarget",
+          },
+        }
+      }
+      metals_config.on_attach = function()
+        require("metals").setup_dap()
+      end
+
+      debug.setup_nvim_dap()
+      set_common_lsp_keybindings()
+  end)
+end
+
+local function setup_golang_lsp()
+  -- set up vimspector
+  vim_utils.lang_autocmd("golang", {"go"}, function()
+    debug.setup_vimspector()
+  end)
+
+  require('lspconfig')['gopls'].setup {
+      on_attach = on_attach,
+      lsp_flags = lsp_flags,
+      cmd = {"gopls", "serve"},
+      filetypes = {"go", "gomod"},
+      root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+        },
+      },
+  }
+end
+
 require('lspconfig')['tsserver'].setup{
     on_attach = on_attach,
     lsp_flags = lsp_flags,
@@ -92,20 +151,7 @@ require('lspconfig')['elixirls'].setup{
     lsp_flags = lsp_flags,
     cmd = { '/Users/jeff/Personal/repos/elixir-ls/language_server.sh' }
 }
-require('lspconfig')['gopls'].setup {
-    on_attach = on_attach,
-    lsp_flags = lsp_flags,
-    cmd = {"gopls", "serve"},
-    filetypes = {"go", "gomod"},
-    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-    settings = {
-      gopls = {
-        analyses = {
-          unusedparams = true,
-        },
-        staticcheck = true,
-      },
-    },
-}
 
 setup_lua_lsp()
+setup_scala_lsp()
+setup_golang_lsp()

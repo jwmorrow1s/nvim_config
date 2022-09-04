@@ -30,6 +30,8 @@ return require('packer').startup(function(use)
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     -- elixir lsp
     use({ "mhanberg/elixir.nvim", requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" }})
+    -- scala lsp
+    use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
     -- file search
     use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { {'nvim-lua/plenary.nvim'} } }
     -- formatting
@@ -42,6 +44,8 @@ return require('packer').startup(function(use)
     use 'airblade/vim-gitgutter'
     -- debugger
     use 'puremourning/vimspector'
+    use 'mfussenegger/nvim-dap'
+    use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' }}
     --completion
     setup_completion(use)
     -- diagnostic for lsp

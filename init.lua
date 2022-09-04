@@ -6,7 +6,6 @@ require('keymaps')
 require('_ale')
 require('completions')
 require('blame')
-require('_debug')
 
 vim.o.number = true
 vim.o.expandtab = true
@@ -26,3 +25,5 @@ vim.api.nvim_exec([[
 
 -- Able to diagnose in buffer with :LspLog
 vim.lsp.set_log_level("debug")
+-- Needed to allow autocmd creation for Metals (Scala lsp)
+vim.opt_global.shortmess:remove("F")

@@ -32,6 +32,11 @@
 - You'll need to download the elixir language server
 - Lua Lsp config explained above
 
+### Scala - Metals
+- You'll need to run :PackerSync to get nvim-metals pulled down
+- You will also need several Scala-specific tools downloaded: scalac, a jdk, sbt, bloop, etc.
+  - All of this can be managed by downloading [Coursier](https://get-coursier.io/docs/cli-installation)
+
 ## Linting
 - Supports linting of typescript/javascript, elixir, and golang. I didn't set up Lua linting/fixing
 

@@ -5,6 +5,7 @@ vim.g.ale_linters = {
   typescript = {'tslint', 'eslint', 'tsserver', 'prettier'},
   typescriptreact = {'tslint', 'eslint', 'prettier'},
   go = {'gopls', 'gofmt'},
+  scala = {'metals', 'sbtserver', 'scalac'},
 }
 
 vim.g.ale_fixers = {
@@ -13,4 +14,5 @@ vim.g.ale_fixers = {
   typescript = {'tslint', 'eslint', 'prettier'},
   typescriptreact = {'tslint', 'eslint', 'prettier'},
   go = {'gofmt'},
+  scala = {'scalafmt'},
 }
