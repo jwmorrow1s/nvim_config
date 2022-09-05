@@ -59,6 +59,8 @@ return require('packer').startup(function(use)
       }
     end
     }
+    -- LaTeX
+    use 'lervag/vimtex'
     -- /My plugins
 
     -- Automatically set up your configuration after cloning packer.vim (if missing)

@@ -68,3 +68,6 @@
   }
 }
   ```
+
+## A Note on latex
+- If you want to use the settings for tex files, you'll need latexmk to be installed and executable
