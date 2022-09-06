@@ -66,4 +66,15 @@ function module.get_visual_selection()
   return "TODO"
 end
 
+---@param cmd string The command to execute
+---@return boolean success if command is found
+function module.exec(cmd)
+    if type(cmd) == "string" and vim.fn.exists(":"..cmd) then
+      vim.api.nvim_exec(cmd, false)
+      return true
+    else
+      return false
+    end
+end
+
 return module

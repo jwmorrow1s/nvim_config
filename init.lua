@@ -6,6 +6,7 @@ require('keymaps')
 require('_ale')
 require('completions')
 require('blame')
+require('_vimtex')
 
 vim.o.number = true
 vim.o.expandtab = true
