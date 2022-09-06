@@ -34,6 +34,7 @@
 
 ### Scala - Metals
 - You'll need to run :PackerSync to get nvim-metals pulled down
+  - The config will actually be broken without having cs and metals installed. So, do that, and :PackerSync
 - You will also need several Scala-specific tools downloaded: scalac, a jdk, sbt, bloop, etc.
   - All of this can be managed by downloading [Coursier](https://get-coursier.io/docs/cli-installation)
 
