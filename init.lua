@@ -7,6 +7,8 @@ require('_ale')
 require('completions')
 require('blame')
 require('_vimtex')
+require('_lualine')
+require('_nvim_web_devicons')
 
 vim.o.number = true
 vim.o.expandtab = true

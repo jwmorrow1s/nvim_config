@@ -53,11 +53,13 @@ return require('packer').startup(function(use)
       "folke/trouble.nvim",
       requires = "kyazdani42/nvim-web-devicons",
       config = function()
-      require("trouble").setup {
-        -- TODO
-        -- needs keybinds: see https://github.com/folke/trouble.nvim
-      }
+      require("trouble").setup {}
     end
+    }
+    -- lualine (status line)
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
     -- LaTeX
     use 'lervag/vimtex'
