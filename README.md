@@ -38,6 +38,12 @@
 - You will also need several Scala-specific tools downloaded: scalac, a jdk, sbt, bloop, etc.
   - All of this can be managed by downloading [Coursier](https://get-coursier.io/docs/cli-installation)
 
+### Rust - Rust Analyzer
+```shell
+  you@user:~$ rustup +nightly component add rust-analyzer-preview
+```
+- then you have to add the .rustup/toolchains/nightly-${os_specific_directory}/bin to your PATH and you're good to go
+
 ## Linting
 - Supports linting of typescript/javascript, elixir, and golang. I didn't set up Lua linting/fixing
 

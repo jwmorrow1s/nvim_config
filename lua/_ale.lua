@@ -6,6 +6,7 @@ vim.g.ale_linters = {
   typescriptreact = {'tslint', 'eslint', 'prettier'},
   go = {'gopls', 'gofmt'},
   scala = {'metals', 'sbtserver', 'scalac'},
+  rust = { 'rust-analyzer' },
 }
 
 vim.g.ale_fixers = {
@@ -15,4 +16,5 @@ vim.g.ale_fixers = {
   typescriptreact = {'tslint', 'eslint', 'prettier'},
   go = {'gofmt'},
   scala = {'scalafmt'},
+  rust = { 'rustfmt' },
 }

@@ -151,6 +151,31 @@ require('lspconfig')['elixirls'].setup{
     lsp_flags = lsp_flags,
     cmd = { '/Users/jeff/Personal/repos/elixir-ls/language_server.sh' }
 }
+require('lspconfig')['rust_analyzer'].setup{
+    on_attach = on_attach,
+    lsp_flags = lsp_flags,
+    settings = {
+      ['rust-analyzer'] = {
+        imports = {
+          granularity = {
+            group = 'module'
+          },
+          prefix = 'self',
+        },
+        checkOnSave = {
+          command = 'clippy',
+        },
+        cargo = {
+          buildScripts = {
+            enable = true,
+          },
+        },
+        procMacro = {
+          enable = true,
+        },
+      },
+    },
+}
 
 setup_lua_lsp()
 setup_scala_lsp()
