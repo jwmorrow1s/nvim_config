@@ -9,6 +9,7 @@ require('blame')
 require('_vimtex')
 require('_lualine')
 require('_nvim_web_devicons')
+require('_mason')
 
 vim.o.number = true
 vim.o.expandtab = true

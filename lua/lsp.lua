@@ -56,8 +56,7 @@ local function setup_lua_lsp()
   table.insert(runtime_path, "lua/?.lua")
   table.insert(runtime_path, "lua/?/init.lua")
   set_common_lsp_keybindings()
-
-  require('lspconfig')['sumneko_lua'].setup {
+require('lspconfig')['sumneko_lua'].setup {
       cmd = {sumneko_binary_path, "-E", sumneko_root_path .. "/lua-language-server/bin/main.lua"};
       settings = {
           Lua = {
@@ -151,32 +150,40 @@ require('lspconfig')['elixirls'].setup{
     lsp_flags = lsp_flags,
     cmd = { '/Users/jeff/Personal/repos/elixir-ls/language_server.sh' }
 }
-require('lspconfig')['rust_analyzer'].setup{
-    on_attach = on_attach,
-    lsp_flags = lsp_flags,
-    settings = {
-      ['rust-analyzer'] = {
-        imports = {
-          granularity = {
-            group = 'module'
-          },
-          prefix = 'self',
-        },
-        checkOnSave = {
-          command = 'clippy',
-        },
-        cargo = {
-          buildScripts = {
-            enable = true,
-          },
-        },
-        procMacro = {
-          enable = true,
-        },
+
+local function setup_rust_lsp()
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "rust",
+    callback = function()
+      vim.schedule(function()
+        debug.setup_nvim_dap()
+        vim.api.nvim_set_keymap('n', '<Space>cr', "<cmd>RustRunnables<cr>", {silent = true, noremap = true})
+        vim.api.nvim_set_keymap('n', '<Space>cc', "<cmd>RustCodeAction<cr>", {silent = true, noremap = true})
+        vim.api.nvim_set_keymap('n', '<Space>cd', "<cmd>RustDebuggables<cr>", {silent = true, noremap = true})
+        vim.api.nvim_set_keymap('n', '<Space>cha', "<cmd>RustHoverActions<cr>", {silent = true, noremap = true})
+        vim.api.nvim_set_keymap('n', '<Space>rr', "<cmd>RustRun<cr>", {silent = true, noremap = true})
+      end)
+    end
+  })
+
+  local rt = require('rust-tools')
+  local extension_path = vim.env.HOME.."/.local/share/nvim/mason/packages/codelldb/extension/"
+  local codelldb_path = extension_path.."adapter/codelldb"
+  local liblldb_path = extension_path.."lldb/lib/liblldb.so"
+  rt.setup({
+      on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+      end,
+      lsp_flags = lsp_flags,
+      dap = {
+        adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
       },
-    },
-}
+   })
+
+end
+
 
 setup_lua_lsp()
 setup_scala_lsp()
 setup_golang_lsp()
+setup_rust_lsp()

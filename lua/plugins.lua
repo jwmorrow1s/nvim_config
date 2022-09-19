@@ -22,8 +22,11 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- My plugins
+    use 'simrat39/rust-tools.nvim'
     -- lsp
     use 'neovim/nvim-lspconfig'
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
     -- nvim api completion
     use 'nvim-lua/completion-nvim'
     -- better syntax highlighting
@@ -61,6 +64,7 @@ return require('packer').startup(function(use)
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
+
     -- LaTeX
     use 'lervag/vimtex'
     -- /My plugins
