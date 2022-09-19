@@ -43,6 +43,9 @@
   you@user:~$ rustup +nightly component add rust-analyzer-preview
 ```
 - then you have to add the .rustup/toolchains/nightly-${os_specific_directory}/bin to your PATH and you're good to go
+#### Debugger Rust
+- MasonInstall codelldb
+- check the paths for the /extension of this install and make sure it jives with what is listed in the setup_rust_lsp function in lua/lsp.lua
 
 ## Linting
 - Supports linting of typescript/javascript, elixir, and golang. I didn't set up Lua linting/fixing
