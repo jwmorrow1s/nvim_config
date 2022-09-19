@@ -60,12 +60,6 @@ function module.alert(msg, width, height)
   vim.api.nvim_buf_set_lines(buf, 0, 0, nil, { msg })
 end
 
----@return string What is currently selected in the buffer
-function module.get_visual_selection()
-  -- TODO
-  return "TODO"
-end
-
 ---@param cmd string The command to execute
 ---@return boolean success if command is found
 function module.exec(cmd)
@@ -75,6 +69,17 @@ function module.exec(cmd)
     else
       return false
     end
+end
+
+---@param path_to_file string The path the the file
+---@return boolean The file can be opened(exists)
+function module.file_exists(path_to_file)
+  local f = io.open(path_to_file, "r")
+  local res = f ~= nil
+  if res then
+    io.close(f)
+  end
+  return res
 end
 
 return module

@@ -169,7 +169,17 @@ local function setup_rust_lsp()
   local rt = require('rust-tools')
   local extension_path = vim.env.HOME.."/.local/share/nvim/mason/packages/codelldb/extension/"
   local codelldb_path = extension_path.."adapter/codelldb"
-  local liblldb_path = extension_path.."lldb/lib/liblldb.so"
+  local liblldb_path = nil
+  if vim_utils.file_exists(extension_path.."lldb/lib/liblldb.so") then
+    liblldb_path = extension_path.."lldb/lib/liblldb.so"
+  else if vim_utils.file_exists(extension_path.."lldb/lib/liblldb.dylib") then
+    liblldb_path = extension_path.."lldb/lib/liblldb.dylib"
+  else
+    print("[ERROR]\t\tNo lldb/lib/liblldb.[dylib|so] was found so either codelldb is not installed or you're on windows. Sorry.")
+    return
+  end
+  end
+
   rt.setup({
       on_attach = function(client, bufnr)
         on_attach(client, bufnr)
