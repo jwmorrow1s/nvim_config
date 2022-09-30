@@ -20,6 +20,7 @@ end
 return require('packer').startup(function(use)
     -- packer itself
     use 'wbthomason/packer.nvim'
+    use 'redhat-developer/yaml-language-server'
 
     -- My plugins
     use 'simrat39/rust-tools.nvim'

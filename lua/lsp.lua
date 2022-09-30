@@ -150,6 +150,19 @@ require('lspconfig')['elixirls'].setup{
     lsp_flags = lsp_flags,
     cmd = { '/Users/jeff/Personal/repos/elixir-ls/language_server.sh' }
 }
+require('lspconfig')['yamlls'].setup{
+    on_attach = on_attach,
+    lsp_flags = lsp_flags,
+    settings = {
+      yaml = {
+        schemaStore = {
+          url = "https://www.schemastore.org/api/json/catalog.json",
+          enable = true,
+        },
+      },
+    },
+  cmd = { vim.env.HOME..'/.local/share/nvim/site/pack/packer/start/yaml-language-server/bin/yaml-language-server', '--stdio' },
+}
 
 local function setup_rust_lsp()
   vim.api.nvim_create_autocmd("FileType", {

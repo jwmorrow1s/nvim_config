@@ -32,6 +32,21 @@
 - You'll need to download the elixir language server
 - Lua Lsp config explained above
 
+### Yaml - yamlls
+- You'll need to locate the yaml-language-server executable
+- The command will be:
+```shell
+  you@user:~$ $HOME/.local/share/nvim/site/pack/packer/start/yaml-language-server/bin/yaml-language-server --stdio
+```
+- But you will need to actually install and build the ls
+```shell
+  you@user:~$ cd $HOME/.local/share/nvim/site/pack/packer/start/yaml-language-server
+  you@user:~$ nvm use 17
+  you@user:~$ npm i
+  you@user:~$ npm run compile
+```
+- After that, things should just work
+
 ### Scala - Metals
 - You'll need to run :PackerSync to get nvim-metals pulled down
   - The config will actually be broken without having cs and metals installed. So, do that, and :PackerSync
