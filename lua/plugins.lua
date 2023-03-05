@@ -20,12 +20,17 @@ end
 return require('packer').startup(function(use)
     -- packer itself
     use 'wbthomason/packer.nvim'
-    use 'redhat-developer/yaml-language-server'
 
     -- My plugins
+
+    use 'redhat-developer/yaml-language-server'
     use 'simrat39/rust-tools.nvim'
     -- lsp
+    use 'LuaLs/lua-language-server'
     use 'neovim/nvim-lspconfig'
+    use ({ "p00f/nvim-ts-rainbow", requires = 'nvim-treesitter/nvim-treesitter' })
+    use ({'vlime/vlime', rtp = 'vim/'})
+    use 'prabirshrestha/asyncomplete.vim'
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
     -- nvim api completion

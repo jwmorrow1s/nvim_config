@@ -10,6 +10,7 @@ require('_vimtex')
 require('_lualine')
 require('_nvim_web_devicons')
 require('_mason')
+require('_asyncomplete')
 
 vim.o.number = true
 vim.o.expandtab = true
