@@ -215,6 +215,13 @@ local function setup_rust_lsp()
 
 end
 
+require('lspconfig')['zls'].setup {
+  on_attach = on_attach,
+  lsp_flags = lsp_flags,
+}
+
+--print(vim.inspect(require('cl-lsp')))
+
 setup_lua_lsp()
 setup_scala_lsp()
 setup_golang_lsp()
